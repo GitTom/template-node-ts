@@ -22,5 +22,5 @@ jobs:
       - name: My TS action
         uses: GitTom/ts-action-play@master
         with:
-          milliseconds: 1000        
+          milliseconds: 600
         id: mytsid
