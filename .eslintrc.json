@@ -35,8 +35,8 @@
     } ],   // eslint def = 80, but airbnb = 100
 
     // To change indent you must disable the base rule as it can report incorrect errors
-    "indent": "off",
-    "@typescript-eslint/indent": ["warn", 2],
+    // "indent": "off",
+    // "@typescript-eslint/indent": ["warn", 2],
 
 
     // My rules selection is based on info here

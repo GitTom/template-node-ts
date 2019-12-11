@@ -4,4 +4,8 @@
 
 //#endregion imports
 
-const { log, warn, error, assert } = console; // eslint-disable-line no-unused-vars
+const { log, warn, error, assert } = console; // eslint-disable-line @typescript-eslint/no-unused-vars
+
+export function main() {
+	log( 'hello world' );
+}
