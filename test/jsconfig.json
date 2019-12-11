@@ -1,0 +1,15 @@
+// 2017-11-16 TMM
+// jsconf.json
+// https://code.visualstudio.com/docs/languages/jsconfig
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules",
+    "tmp",
+    "temp"
+  ]
+}

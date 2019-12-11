@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    // https://www.typescriptlang.org/docs/handbook/compiler-options.html
+    "outDir": "dist",
+    "incremental": true,
+
+    "target": "es2017",
+    "lib": ["es2017"],
+    "module": "commonjs",
+
+    "esModuleInterop": true, // release notes 2.7: "We highly recommend applying it both to new and existing projects"
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "isolatedModules": true,
+    // Meant to cause it to treat all files as modules, to address this:
+    // https://stackoverflow.com/q/40900791/cannot-redeclare-block-scoped-variable-in-unrelated-files
+    // But initial observation is that it doesn't seem to have any impact (I still need to use work-around).
+    
+    // "strict" enables all strict type checking options, including noImplicitAny, noImplicitThis, alwaysStrict, & strict*
+    "strict": true, 
+    // "noImplicitAny": false, // Had to do this to augment global namespace // https://stackoverflow.com/a/56984941/150016
+    "noImplicitUseStrict": true, // Do not emit "use strict" directives in module output (it was inserting it in json files).
+    "alwaysStrict": false, // noImplicitUseStrict requires that "alwaysStrict" be left off, but 'strict: true' turned it on. 
+
+    "noImplicitReturns": true,
+    // Can't make these just warnings - so turn them off and let eslint catch them.
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "compileOnSave": true,
+  "include": [
+    "src"
+  ],
+  // Do I need both include & exclude?
+  "exclude": [
+    "node_modules",
+    "dist" // it automatically excludes the "outDir", unless "exclude" is specified.
+  ]  
+}

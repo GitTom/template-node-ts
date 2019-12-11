@@ -1,0 +1,105 @@
+{
+  // My eslint.json for typescript
+  // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser
+
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+    // For global install of eslint:
+    // "project": "tsconfig.json"
+    // "tsconfigRootDir": "c:/dev/gcpAdmin/functions/" // otherwise it looks for it in global folder (since I'm using global eslint)
+    // https://github.com/typescript-eslint/typescript-eslint/issues/251 (see my comment)
+  },
+
+  "plugins": ["@typescript-eslint"],
+
+  "env" : {
+    "node": true
+  },
+
+  "extends": [
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/recommended.json
+    "plugin:@typescript-eslint/recommended"
+    // Above is the simpler group; the next one are separate only because they require processing (slower)
+    // "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+
+  "rules": {
+
+    // Copied from my JS eslint.
+    "max-len" : ["warn", {
+      "code": 120,
+      "comments": 120,
+      "ignoreTrailingComments": true,
+      "ignoreUrls": true
+    } ],   // eslint def = 80, but airbnb = 100
+
+    // To change indent you must disable the base rule as it can report incorrect errors
+    "indent": "off",
+    "@typescript-eslint/indent": ["warn", 2],
+
+
+    // My rules selection is based on info here
+    // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules
+    // As of 2019-03-21
+
+    // --- Rules included in Recommended config ---
+    
+    "@typescript-eslint/no-use-before-define": "off",
+    // "@typescript/no-use-before-define": ["error", {"functions": false, "typedefs": false}]
+
+    "@typescript-eslint/no-explicit-any": "off",
+    
+    // explicit-member-accessibility - included in recommended (as error).
+    // Should I turn this off (and just allow lots of defaulting to 'public')?
+    "@typescript-eslint/explicit-member-accessibility": "warn", // default appears to be "error"
+
+    // --- Rules not included in Recommended config ---
+
+    "@typescript-eslint/no-for-in-array": "warn",
+
+    "@typescript-eslint/no-this-alias": "warn",
+
+    // Type aliasing is an advanced TS technique; I'm not sure about this one.
+    "@typescript-eslint/no-type-alias": "warn",
+
+    "@typescript-eslint/no-unnecessary-qualifier": "warn",
+
+    // Not sure
+    "@typescript-eslint/no-unnecessary-type-assertion": "warn",
+
+    "@typescript-eslint/restrict-plus-operands": "warn",
+    
+    "@typescript-eslint/unified-signatures": "warn",
+
+    // I can't get the configuration right.  Wait until eslint-typescript has better documentation.
+    /*
+    // Severity should be one of the following: 0 = off, 1 = warn, 2 = error (you passed '{ default: [ true, { order: [Array], alphabetize: false } ] }
+    // Member Ordering
+    // Use Member group types (with scope, ignoring accessibility)
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-ordering.md#member-group-types-with-scope-ignoring-accessibility
+    "@typescript-eslint/member-ordering": { "default" :
+      [ "warn", { "order" : [
+          // Fields
+          "static-field", // = ['public-static-field', 'protected-static-field', 'private-static-field'])
+          "instance-field", // = ['public-instance-field', 'protected-instance-field', 'private-instance-field'])
+          // Constructors
+          "constructor", // = ['public-constructor', 'protected-constructor', 'private-constructor'])
+          // Methods
+          "static-method", // = ['public-static-method', 'protected-static-method', 'private-static-method'])
+          "instance-method" // = ['public-instance-method', 'protected-instance-method', 'private-instance-method']
+        ],
+        "alphabetize": false
+      }
+    ] }
+    */
+
+
+    // -- Relax some rules during development phase
+    "@typescript-eslint/no-unused-vars" : "warn",
+    "@typescript-eslint/no-inferrable-types" : "warn", // set to error in 'recommended' plugin.
+    "prefer-const" : "warn",
+    "no-multiple-empty-lines" : "warn"
+
+  }
+}

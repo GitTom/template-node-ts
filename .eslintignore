@@ -1,0 +1,7 @@
+# The vscode integration is ignoring this file - not sure why.
+# So I put a copy in workspace root & that seems to work.
+/archive
+/node_modules
+/tmp
+/dist
+**/*.js

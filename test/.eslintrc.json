@@ -1,0 +1,94 @@
+{
+  // 2017-11-12 TMM 
+  // Copied this from my WWZ (bot, c9) workspace - where it was just a WIP - to this Options (fb functions, vsc) workspace.
+  // 2018-01-24 TMM
+  // Now copying it back to bots project.
+
+  // http://eslint.org/docs/user-guide/configuring
+  // Note: yes, eslint supports js style comments in json config file.
+  // So set this file to be jsonc file type in IDE (to avoid error messages).
+
+  // Note Configuration Cascading and Hierarchy
+  // https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy
+  // So this is the dominant config for files in this (test) folder,
+  // but eslint would normally also look up the folder hierarchy, but this stops it:
+  "root": true,
+
+  "env" : {
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+      "log": false,
+      "err": false
+  },
+  
+  "extends": "airbnb-base",
+  // https://github.com/airbnb/javascript
+
+  "rules" : {
+    "max-len" : ["warn", {
+        "code": 100,
+        "comments": 120,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true
+    } ],   // eslint def = 80, but airbnb = 100
+    "linebreak-style": 0,  // allow either style, cause the default for git config core.autocrlf appears to be 'true'.
+    "curly" : "off",
+    "quotes" : "off",     // I often use double since other languages do.
+    "yoda" : ["warn", "always"],  // So airbnb has yoda : "never"?  why?
+    "no-plusplus" : "off",
+    "padded-blocks" : "off",  // I like padding my blocks with blanks line sometimes - has meaning for me.
+    "no-console" : "off", // where I do this, I do it knowingly the issues.
+    "nonblock-statement-body-position" : "off",
+
+    // I don't see any problem with breaking this rule for functions (and I have some code that does).
+    "no-use-before-define": ["error", {
+        "functions": false,
+        "classes": true,
+        "variables": true        
+      }
+    ],
+
+    "no-underscore-dangle" : "off", // This option prevents use of the underscore prefix (typically used to indicate private).
+
+    // Justification for some exceptions, particularly these spacing ones...
+    // https://medium.freecodecamp.org/adding-some-air-to-the-airbnb-style-guide-3df40e31c57a
+    // spacing (I will enable them as needed)
+    "space-in-parens": "off",
+      // airbnb="never", article above="always"
+      // I do "always" except in require() statements.
+    //"template-curly-spacing": [ 2, "always" ],
+    //"array-bracket-spacing": [ 2, "always" ],
+    //"object-curly-spacing": [ 2, "always" ],
+    //"computed-property-spacing": [ 2, "always" ],
+    //"no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
+    // and some of my own...
+    "spaced-comment": ["warn", "always", { "markers": ["#region", "#endregion"] }],
+    // Allow #region & #endregion as exceptions (markers).  Note that vscode also support region/endregion (w/o the pound).
+    // It seems that #region is more commmon in vscode (and VS and C#), but without the pound is more common in IntelliJ/AS.
+    "space-before-function-paren" : "off",
+
+    // lines-around-directive is deprecated (in favour of 'padding-line-between-statements'),
+    // and I don't like the extra lines around 'use strict'.
+    // https://eslint.org/docs/rules/lines-around-directive"
+    "lines-around-directive" : "off",
+
+    // no-trailing-spaces - I guess a good idea but just too annoying, so I dilute it a bit (it is normally "error").
+    // https://eslint.org/docs/rules/no-trailing-spaces
+    "no-trailing-spaces" : ["warn", { "ignoreComments": true, "skipBlankLines": true } ],
+    
+    // https://github.com/airbnb/javascript/issues/840
+    "no-restricted-syntax" : [
+      0,
+      "ForInStatement"
+    ],
+
+    // Try to get rid of these exceptions
+    "func-names" : "off",
+    "prefer-arrow-callback" : "off",
+    "prefer-template" : "warn",
+    "no-lonely-if" : "off"  // would do 'warn' but it marks the entire block - too ugly
+
+  } // end of "rules"
+}
