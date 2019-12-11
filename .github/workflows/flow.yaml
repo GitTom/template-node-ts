@@ -22,5 +22,5 @@ jobs:
       - name: My TS action
         uses: GitTom/ts-action-play@master
         with:
-          myInput: 'input from flow.yaml'
+          milliseconds: 1000        
         id: mytsid
