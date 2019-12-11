@@ -20,7 +20,7 @@ jobs:
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
       # This step runs my TS action.
       - name: My TS action
-        uses: GitTom/ts-action-play
+        uses: GitTom/ts-action-play@master
         with:
           myInput: 'input from flow.yaml'
         id: mytsid
